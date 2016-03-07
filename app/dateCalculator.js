@@ -1,6 +1,13 @@
 var getNumberOfFullDaysBetweenDates = function (startDate, endDate) {
     startDate = startDate.split("/");
     endDate = endDate.split("/");
+
+    if (isStartDateBeforeEndDate(startDate, endDate)) {
+        var temp = startDate;
+        startDate = endDate;
+        endDate = temp;
+    }
+
     var startDay = parseInt(startDate[0]);
     var startMonth = parseInt(startDate[1]);
     var startYear = parseInt(startDate[2]);
@@ -75,6 +82,10 @@ var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 var isLeapYear = function(year) {
     return (year % 4 === 0 && year % 100 != 0) || (year % 4 === 0) && (year % 100 === 0 && year % 400 === 0);
+};
+
+var isStartDateBeforeEndDate = function(startDate, endDate) {
+  return ((startDate[2] > endDate[2]) || (startDate[2] === endDate[2] && startDate[1] > endDate[1]) || (startDate[2] === endDate[2] && startDate[1] === endDate[1] && startDate[0] > endDate[0]));
 };
 
 module.exports = {
