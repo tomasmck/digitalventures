@@ -11,12 +11,8 @@ Clone the repo locally and run the following in the root directory:
 
 ### Command line usage
 ```
-  # Basic usage
   days <startDate> <endDate>
-  # Only supply start date (assumes endDate is today)
-    days <startDate>
 ```
-
 
 
 ### Website
