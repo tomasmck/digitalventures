@@ -13,5 +13,5 @@ if(process.argv[3] !== null) {
     endDate = ""; //TODAY?
 }
 
-console.log('Total number of days: %s', dateCalculator.countNumberOfDays(startDate, endDate));
+console.log('Total number of days: %s', dateCalculator.getNumberOfFullDaysBetweenDates(startDate, endDate));
 

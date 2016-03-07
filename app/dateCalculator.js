@@ -1,3 +1,3 @@
-exports.countNumberOfDays = function (startDate, endDate) {
+exports.getNumberOfFullDaysBetweenDates = function (startDate, endDate) {
     return startDate - endDate;
 };
