@@ -1,9 +1,16 @@
 var getNumberOfFullDaysBetweenDates = function (startDate, endDate) {
     startDate = startDate.split("/");
     endDate = endDate.split("/");
-    var yearDiff = endDate[2] - startDate[2];
-    var monthDiff = (endDate[1] - startDate[1]) + 12 * yearDiff;
-    var dayDiff = endDate[0] - startDate[0];
+    var startDay = parseInt(startDate[0]);
+    var startMonth = parseInt(startDate[1]);
+    var startYear = parseInt(startDate[2]);
+    var endDay = parseInt(endDate[0]);
+    var endMonth = parseInt(endDate[1]);
+    var endYear = parseInt(endDate[2]);
+    var yearDiff = endYear - startYear;
+    var monthDiff = (endMonth - startMonth) + 12 * yearDiff;
+    var dayDiff = endDay - startDay;
+    var remainingDaysInStartMonth = 0;
     if(yearDiff === 0) {
         if(monthDiff === 0) {
             if(dayDiff < 2) {
@@ -12,25 +19,54 @@ var getNumberOfFullDaysBetweenDates = function (startDate, endDate) {
                 return dayDiff - 1;
             }
         } else {
-            var numDaysInStartDate = months[parseInt(startDate[1])];
-            var remainingDaysInStartMonth = (numDaysInStartDate - parseInt(startDate[0]));
-            var daysInStartAndEndMonths = remainingDaysInStartMonth + (parseInt(endDate[0]) - 1);
+            var numDaysInStartDate = months[startMonth -1];
+            remainingDaysInStartMonth = (numDaysInStartDate - startDay);
+            var daysInStartAndEndMonths = remainingDaysInStartMonth + (endDay - 1);
             if (monthDiff === 1) {
                 return daysInStartAndEndMonths;
             } else {
-                for (var i = (parseInt(startDate[1]) + 1); i < parseInt(endDate[1]); i++) {
-                    daysInStartAndEndMonths += months[i];
+                for (var i = (startMonth + 1); i < endMonth; i++) {
+                    daysInStartAndEndMonths += months[i -1];
                 }
                 return daysInStartAndEndMonths;
             }
         }
     } else {
-        var numberOfLeapYears = 0;
-        for (var j = (parseInt(startDate[2])); j === parseInt(endDate[2]); j++) {
-            numberOfLeapYears += isLeapYear(j) ? 1 : 0;
+        var fullYears = yearDiff === 0 || yearDiff === 1 ? 0 : yearDiff - 1;
+        var daysInMonthsPlusLooseDays = 0;
+        var numberOfMonthsDifference = 0;
+        if(endMonth < startMonth) {
+            numberOfMonthsDifference = 12 - (startMonth - endMonth);
+            remainingDaysInStartMonth = (months[startMonth -1] - startDay - 1);
+            daysInMonthsPlusLooseDays = remainingDaysInStartMonth + (endDay - 1);
+        } else {
+            numberOfMonthsDifference = (endMonth - startMonth) + (12 * yearDiff);
+            remainingDaysInStartMonth = (months[startMonth -1] - startDay - 1);
+            daysInMonthsPlusLooseDays = remainingDaysInStartMonth + (endDay - 1);
         }
-        if (yearDiff === 1) {
-
+        if (monthDiff === 1) {
+            return daysInMonthsPlusLooseDays;
+        } else {
+            var firstFullMonth = (startMonth + 1);
+            for (var k = firstFullMonth; k < (firstFullMonth + numberOfMonthsDifference -1); k++) {
+                var monthIndex = k;
+                var yearIndex = startYear;
+                if (k > 11) {
+                    monthIndex -= 12;
+                    yearIndex += 1;
+                }
+                daysInMonthsPlusLooseDays += months[monthIndex];
+                if (monthIndex === 1 && isLeapYear(yearIndex)) { daysInMonthsPlusLooseDays++ }
+            }
+            var firstFullYear = (startYear + 1);
+            if (yearDiff != 1) {
+                for (var l = firstFullYear; l < (firstFullYear + fullYears); l++){
+                    if (isLeapYear(l)) {
+                        daysInMonthsPlusLooseDays++
+                    }
+                }
+            }
+            return (fullYears * 365) + daysInMonthsPlusLooseDays;
         }
     }
 };

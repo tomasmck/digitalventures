@@ -18,16 +18,24 @@ describe('Date calculator', function() {
             expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/11/1972", "09/11/1972")).to.equal(1);
         });
 
-        it('should return 29 days between the 7th October and 7th November of the same year', function() {
-            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/10/1972", "07/11/1972")).to.equal(29);
+        it('should return 30 days between the 7th October and 7th November of the same year', function() {
+            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/10/2016", "07/11/2016")).to.equal(30);
         });
 
-        it('should return 363 days when the start and end date are exactly one year apart', function() {
-            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/10/1972", "07/10/1973")).to.equal(363);
+        it('should return 364 days when the start and end date are exactly one year apart', function() {
+            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/10/2014", "07/10/2015")).to.equal(364);
         });
 
-        it('should return 364 days when the start and end date are exactly one year apart including a leap year', function() {
-            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/10/2015", "07/10/2016")).to.equal(364);
+        it('should return 365 days when the start and end date are exactly one year apart including a leap year', function() {
+            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/10/2015", "07/10/2016")).to.equal(365);
+        });
+
+        it('should return 29 days between the 7th December and 7th January (one month later)', function() {
+            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/12/1972", "07/01/1973")).to.equal(29);
+        });
+
+        it('should return 394 days between the 7th December and 7th January of the following year (one year and one month)', function() {
+            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/12/1972", "07/01/1974")).to.equal(394);
         });
 
         it('should return 19 days between the 2nd and 22nd of June 1983', function() {
@@ -37,6 +45,10 @@ describe('Date calculator', function() {
         it('should return 173 days between 4th July and Christmas 1984', function() {
             expect(dateCalculator.getNumberOfFullDaysBetweenDates("04/07/1984", "25/12/1984")).to.equal(173);
         });
+
+        it('should return 1979 days between 3rd Jan 1989 and 3rd August 1983', function() {
+            expect(dateCalculator.getNumberOfFullDaysBetweenDates("03/08/1983", "03/01/1989")).to.equal(1979);
+        })
 
         it('should return 1979 days between 3rd Jan 1989 and 3rd August 1983', function() {
             expect(dateCalculator.getNumberOfFullDaysBetweenDates("03/01/1989", "03/08/1983")).to.equal(1979);
