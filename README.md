@@ -4,10 +4,18 @@
 ### Installation
 Clone the repo locally and run the following in the root directory:
 ```js
-  npm install
+  npm install -g
 ```
 
 ### Command line usage
+```
+  # Basic usage
+  days <startDate> <endDate>
+  # Only supply start date (assumes endDate is today)
+    days <startDate>
+```
+
+
 
 ### Website
 If you prefer to use a UI instead of the command line interface, run the following command

@@ -1,5 +1,3 @@
-
-
-function countNumberOfDays(startDate, endDate) {
+exports.countNumberOfDays = function (startDate, endDate) {
     return startDate - endDate;
-}
+};
