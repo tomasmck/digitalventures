@@ -1,0 +1,14 @@
+{
+  "name": "dv-date-calculator",
+  "version": "1.0.0",
+  "description": "A utility for calculating the number of days a project has run",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tomas McKinless",
+  "license": "ISC"
+}
