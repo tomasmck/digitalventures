@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tomasmck/digitalventures.svg?branch=master)](https://travis-ci.org/tomasmck/digitalventures)
+
 # BCG Digital Ventures
 ## Date Calculator
 
