@@ -11,12 +11,15 @@
     "days": "./bin/dateCalculator.js"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec"
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "mutation-testing": "grunt"
   },
   "author": "Tomas McKinless",
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
+    "grunt": "^0.4.5",
+    "grunt-mutation-testing": "^1.3.2",
     "mocha": "^2.4.5"
   }
 }

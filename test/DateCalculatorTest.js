@@ -1,5 +1,5 @@
 var expect = require("chai").expect;
-var dateCalculator = require("../app/dateCalculator");
+var dateCalculator = require("../src/dateCalculator");
 
 
 describe('Date calculator', function() {

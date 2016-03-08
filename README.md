@@ -31,6 +31,13 @@ The following example specifies the end date first, this is handled by the app.
   Total number of days: 1979
 ```
 
+### Running tests
+
+The unit tests can be run by navigating to the root and running the following command:
+```
+  npm test
+```
+
 ### License
 
 The MIT License (MIT)

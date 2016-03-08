@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var dateCalculator = require('../app/dateCalculator.js');
+var dateCalculator = require('../src/dateCalculator.js');
 var startDate;
 var endDate;
 
