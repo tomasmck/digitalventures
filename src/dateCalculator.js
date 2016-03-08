@@ -1,11 +1,39 @@
-var getNumberOfFullDaysBetweenDates = function (startDate, endDate) {
-    startDate = startDate.split("/");
-    endDate = endDate.split("/");
-    if (isStartDateBeforeEndDate(startDate, endDate)) {
-        var temp = startDate;
-        startDate = endDate;
-        endDate = temp;
+var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+function addFullMonths(startMonth, fullMonths, startYear) {
+    var numberOfDays = 0;
+    for (var i = startMonth + 1; i < (startMonth + fullMonths); i++) {
+        var month = i;
+        var yearIndex = startYear;
+        if (i > 12) {
+            month -= 12;
+            yearIndex += 1;
+        }
+        numberOfDays += getNumberOfDaysInMonth(month);
+        if (month === 2 && isLeapYear(yearIndex)) {
+            numberOfDays++
+        }
     }
+    return numberOfDays;
+}
+
+function getNumberOfDaysFromStartAndEndMonths(startMonth, startDay, endDay) {
+    return (getNumberOfDaysInMonth(startMonth) - startDay) + (endDay);
+}
+function addFullYears(startYear, fullYears) {
+    var numberOfDays = 0;
+    var firstFullYear = (startYear + 1);
+    if (fullYears > 0) {
+        for (var l = firstFullYear; l < (firstFullYear + fullYears); l++) {
+            if (isLeapYear(l)) {
+                numberOfDays++
+            }
+        }
+    }
+    numberOfDays += (fullYears * 365);
+    return numberOfDays;
+}
+function calulateNumberOfFullDays(startDate, endDate) {
     var startDay = parseInt(startDate[0])
         , startMonth = parseInt(startDate[1])
         , startYear = parseInt(startDate[2])
@@ -17,50 +45,41 @@ var getNumberOfFullDaysBetweenDates = function (startDate, endDate) {
         , dayDiff = endDay - startDay
         , totalDays = 0;
 
-    if (monthDiff === 0) { totalDays = dayDiff }
-    var fullYears = yearDiff === 0 || yearDiff === 1 ? 0 : yearDiff - 1;
-    var fullMonths = endMonth < startMonth ? 12 - (startMonth - endMonth) : monthDiff;
-    if (monthDiff > 0) {
-        totalDays = (getNumberOfDaysInMonth(startMonth) - startDay) + (endDay);
-        var firstFullMonth = (startMonth + 1);
-        for (var k = firstFullMonth; k < (firstFullMonth + (fullMonths -1)); k++) {
-            var month = k;
-            var yearIndex = startYear;
-            if (k > 12) {
-                month -= 12;
-                yearIndex += 1;
-            }
-            totalDays += getNumberOfDaysInMonth(month);
-            if (month === 2 && isLeapYear(yearIndex)) {
-                totalDays++
-            }
-        }
-        var firstFullYear = (startYear + 1);
-        if (yearDiff != 1) {
-            for (var l = firstFullYear; l < (firstFullYear + fullYears); l++) {
-                if (isLeapYear(l)) {
-                    totalDays++
-                }
-            }
-        }
-        totalDays += (fullYears * 365);
+    var numberOfFullYears = yearDiff === 0 || yearDiff === 1 ? 0 : yearDiff - 1;
+    var numberOfFullMonths = endMonth < startMonth ? 12 - (startMonth - endMonth) : monthDiff;
+    if (monthDiff < 1) {
+        totalDays = dayDiff
+    } else {
+        totalDays += getNumberOfDaysFromStartAndEndMonths(startMonth, startDay, endDay);
+        totalDays += addFullMonths(startMonth, numberOfFullMonths, startYear);
+        totalDays += addFullYears(startYear, numberOfFullYears);
     }
+    return totalDays;
+}
+
+var getNumberOfFullDaysBetweenDates = function (startDate, endDate) {
+    startDate = startDate.split("/");
+    endDate = endDate.split("/");
+    if (isStartDateBeforeEndDate(startDate, endDate)) {
+        var temp = startDate;
+        startDate = endDate;
+        endDate = temp;
+    }
+    var totalDays = calulateNumberOfFullDays(startDate, endDate);
     if (totalDays != 0) { totalDays-- }
     return totalDays;
 };
 
-var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-getNumberOfDaysInMonth = function(month) {
+function getNumberOfDaysInMonth(month) {
     return months[month - 1];
+};
+
+function isStartDateBeforeEndDate(startDate, endDate) {
+    return ((startDate[2] > endDate[2]) || (startDate[2] === endDate[2] && startDate[1] > endDate[1]) || (startDate[2] === endDate[2] && startDate[1] === endDate[1] && startDate[0] > endDate[0]));
 };
 
 var isLeapYear = function (year) {
     return (year % 4 === 0 && year % 100 != 0) || (year % 4 === 0) && (year % 100 === 0 && year % 400 === 0);
-};
-
-var isStartDateBeforeEndDate = function (startDate, endDate) {
-    return ((startDate[2] > endDate[2]) || (startDate[2] === endDate[2] && startDate[1] > endDate[1]) || (startDate[2] === endDate[2] && startDate[1] === endDate[1] && startDate[0] > endDate[0]));
 };
 
 module.exports = {

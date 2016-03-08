@@ -44,7 +44,7 @@ The unit tests can be run by navigating to the root and running the following co
 
 ### Mutation testing
 
-For an application that requires high confidence in , like this one, it's important we know that our tests aren't giving us false positives. This is where mutation testing comes in.
+For an application that requires high confidence in the tests, it's important we know that our tests aren't giving us false positives. This is where mutation testing comes in.
 Mutation testing will change lines of your source code in order to test that your tests will fail, thus assessing the quality of our unit tests.
 
 To run the mutation test locally:
