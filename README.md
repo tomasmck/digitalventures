@@ -3,6 +3,10 @@
 # BCG Digital Ventures
 ## Date Calculator
 
+A node.js command line application that will calculate the number of full days that have passed between two dates.
+
+Partial days are not included, this means that the start and end date specified will not be included in the calculation.
+
 ### Installation
 Clone the repo locally and run the following in the root directory:
 ```js
@@ -17,17 +21,17 @@ Clone the repo locally and run the following in the root directory:
 ### Examples
 
 ```
-  Ernie:BCGDV tomasmckinless$ days 02/06/1983 22/06/1983
+  $ days 02/06/1983 22/06/1983
   Total number of days: 19
 ```
 
 ```
-  Ernie:BCGDV tomasmckinless$ days 04/07/1984 25/12/1984
+  $ days 04/07/1984 25/12/1984
   Total number of days: 173
 ```
 The following example specifies the end date first, this is handled by the app.
 ```
-  Ernie:BCGDV tomasmckinless$ days 03/01/1989 03/08/1983
+  $ days 03/01/1989 03/08/1983
   Total number of days: 1979
 ```
 
@@ -36,6 +40,17 @@ The following example specifies the end date first, this is handled by the app.
 The unit tests can be run by navigating to the root and running the following command:
 ```
   npm test
+```
+
+### Mutation testing
+
+For an application that requires high confidence in , like this one, it's important we know that our tests aren't giving us false positives. This is where mutation testing comes in.
+Mutation testing will change lines of your source code in order to test that your tests will fail, thus assessing the quality of our unit tests.
+
+To run the mutation test locally:
+```
+  npm install grunt-cli
+  grunt
 ```
 
 ### License

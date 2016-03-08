@@ -13,7 +13,7 @@ var getNumberOfFullDaysBetweenDates = function (startDate, endDate) {
         , endMonth = parseInt(endDate[1])
         , endYear = parseInt(endDate[2])
         , yearDiff = endYear - startYear
-        , monthDiff = (endMonth - startMonth) + 12 * yearDiff
+        , monthDiff = (endMonth - startMonth) + (yearDiff * 12)
         , dayDiff = endDay - startDay
         , totalDays = 0;
 
