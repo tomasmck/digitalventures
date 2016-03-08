@@ -19,10 +19,14 @@ Clone the repo locally and run the following in the root directory:
 ```
   Ernie:BCGDV tomasmckinless$ days 02/06/1983 22/06/1983
   Total number of days: 19
-``````
+```
+
+```
   Ernie:BCGDV tomasmckinless$ days 04/07/1984 25/12/1984
   Total number of days: 173
-``````
+```
+The following example specifies the end date first, this is handled by the app.
+```
   Ernie:BCGDV tomasmckinless$ days 03/01/1989 03/08/1983
   Total number of days: 1979
 ```
