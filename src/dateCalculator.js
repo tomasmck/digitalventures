@@ -3,12 +3,12 @@ var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 var getNumberOfFullDaysBetweenDates = function (startDate, endDate) {
     startDate = startDate.split("/");
     endDate = endDate.split("/");
+    var totalDays;
     if (isStartDateBeforeEndDate(startDate, endDate)) {
-        var temp = startDate;
-        startDate = endDate;
-        endDate = temp;
+        totalDays = calculateNumberOfFullDays(endDate, startDate);
+    } else {
+        totalDays = calculateNumberOfFullDays(startDate, endDate);
     }
-    var totalDays = calculateNumberOfFullDays(startDate, endDate);
     if (totalDays != 0) { totalDays-- }
     return totalDays;
 };
