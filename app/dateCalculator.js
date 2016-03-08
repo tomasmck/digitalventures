@@ -1,5 +1,7 @@
 var getNumberOfFullDaysBetweenDates = function (startDate, endDate) {
-    if (isStartDateBeforeEndDate(startDate.split("/"), endDate.split("/"))) {
+    startDate = startDate.split("/");
+    endDate = endDate.split("/");
+    if (isStartDateBeforeEndDate(startDate, endDate)) {
         var temp = startDate;
         startDate = endDate;
         endDate = temp;

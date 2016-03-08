@@ -9,22 +9,10 @@ Clone the repo locally and run the following in the root directory:
   npm install -g
 ```
 
-### Command line usage
+### Usage
 ```
   days <startDate> <endDate>
 ```
-
-
-### Website
-If you prefer to use a UI instead of the command line interface, run the following command
-```js
-  node ./bin/www
-```
-You will then be able to navigate to [localhost:3000](http://localhost:3000) to view the website
-
-### Web API usage
-
-
 
 ### License
 
