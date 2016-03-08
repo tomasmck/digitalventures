@@ -9,8 +9,6 @@ if(process.argv[2] !== null) {
 
 if(process.argv[3] !== null) {
     endDate = process.argv[3];
-} else {
-    endDate = ""; //TODAY?
 }
 
 console.log('Total number of days: %s', dateCalculator.getNumberOfFullDaysBetweenDates(startDate, endDate));
