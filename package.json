@@ -11,7 +11,7 @@
     "days": "./bin/dateCalculator.js"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec",
+    "test": "./node_modules/.bin/mocha --reporter spec && grunt",
     "mutation-testing": "grunt"
   },
   "author": "Tomas McKinless",
