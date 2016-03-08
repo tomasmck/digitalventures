@@ -23,16 +23,16 @@ function calculateNumberOfFullDays(startDate, endDate) {
         , yearDiff = endYear - startYear
         , monthDiff = (endMonth - startMonth) + (yearDiff * 12)
         , dayDiff = endDay - startDay
-        , totalDays = 0;
+        , totalDays = 0
+        , numberOfFullYears = yearDiff === 0 || yearDiff === 1 ? 0 : yearDiff - 1
+        , numberOfFullMonths = endMonth < startMonth ? 12 - (startMonth - endMonth) : monthDiff;
 
-    var numberOfFullYears = yearDiff === 0 || yearDiff === 1 ? 0 : yearDiff - 1;
-    var numberOfFullMonths = endMonth < startMonth ? 12 - (startMonth - endMonth) : monthDiff;
-    if (monthDiff < 1) {
-        totalDays = dayDiff
-    } else {
+    if (monthDiff >= 1) {
         totalDays += addPartialMonths(startMonth, startDay, endDay);
         totalDays += addFullMonths(startMonth, numberOfFullMonths, startYear);
         totalDays += addFullYears(startYear, numberOfFullYears);
+    } else {
+        totalDays = dayDiff
     }
     return totalDays;
 }
