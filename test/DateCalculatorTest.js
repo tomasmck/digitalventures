@@ -30,12 +30,12 @@ describe('Date calculator', function() {
             expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/10/2015", "07/10/2016")).to.equal(365);
         });
 
-        it('should return 29 days between the 7th December and 7th January (one month later)', function() {
-            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/12/1972", "07/01/1973")).to.equal(29);
+        it('should return 30 days between the 7th December and 7th January (one month later)', function() {
+            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/12/1972", "07/01/1973")).to.equal(30);
         });
 
         it('should return 394 days between the 7th December and 7th January of the following year (one year and one month)', function() {
-            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/12/1972", "07/01/1974")).to.equal(394);
+            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/12/1972", "07/01/1974")).to.equal(395);
         });
 
         it('should return 19 days between the 2nd and 22nd of June 1983', function() {
@@ -55,7 +55,7 @@ describe('Date calculator', function() {
         });
 
         it('should return 394 days between the 7th December and 7th January of the following year (one year and one month) (dates reversed)', function() {
-            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/01/1974", "07/12/1972")).to.equal(394);
+            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/01/1974", "07/12/1972")).to.equal(395);
         });
 
         it('should return 19 days between the 2nd and 22nd of June 1983 (dates reversed)', function() {
@@ -67,7 +67,7 @@ describe('Date calculator', function() {
         });
 
         it('should return 29 days between the 7th December and 7th January (one month later)', function() {
-            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/01/1973", "07/12/1972")).to.equal(29);
+            expect(dateCalculator.getNumberOfFullDaysBetweenDates("07/01/1973", "07/12/1972")).to.equal(30);
         });
     });
 
